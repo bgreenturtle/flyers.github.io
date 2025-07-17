@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Grocery Flyers</title>
+    <!-- Tailwind CSS CDN for easy styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for better font and centering */
+        body {
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f0f2f5; /* Light gray background */
+            padding: 1rem; /* Add some padding around the content */
+        }
+        .flyer-container {
+            background-color: #ffffff;
+            border-radius: 0.75rem; /* Rounded corners */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem; /* Space between containers */
+            max-width: 800px; /* Max width for readability */
+            width: 100%; /* Full width on smaller screens */
+            text-align: center;
+        }
+        .flyer-image {
+            max-width: 100%; /* Ensure image is responsive */
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 0.5rem; /* Slightly rounded image corners */
+            margin-top: 1rem; /* Space above image */
+            display: block; /* Remove extra space below image */
+            margin-left: auto; /* Center image */
+            margin-right: auto; /* Center image */
+        }
+    </style>
+</head>
+<body>
+
+    <h1 class="text-4xl font-bold text-gray-800 mb-8 text-center">Weekly Grocery Flyers</h1>
+
+    <!-- Flyer Container 1 -->
+    <div class="flyer-container">
+        <h2 class="text-2xl font-semibold text-gray-700 mb-4">Food Depot Image 1</h2>
+        <!--
+            IMPORTANT: Replace 'https://placehold.co/600x800/ADEFD1/00203F?text=Flyer+1'
+            with the actual path to your 'food_depot_image_1.png' file.
+            Make sure the image file is in the same directory or provide the correct relative path.
+        -->
+        <img src="https://placehold.co/600x800/ADEFD1/00203F?text=Flyer+1"
+             alt="Food Depot Weekly Flyer 1"
+             class="flyer-image"
+             onerror="this.onerror=null;this.src='https://placehold.co/600x800/CCCCCC/333333?text=Image+Not+Found';"
+        >
+        <p class="text-gray-600 mt-4">This is the first weekly flyer from Food Depot.</p>
+    </div>
+
+    <!-- Flyer Container 2 -->
+    <div class="flyer-container">
+        <h2 class="text-2xl font-semibold text-gray-700 mb-4">Food Depot Image 2</h2>
+        <!--
+            IMPORTANT: Replace 'https://placehold.co/600x800/ADEFD1/00203F?text=Flyer+2'
+            with the actual path to your 'food_depot_image_2.png' file.
+            Make sure the image file is in the same directory or provide the correct relative path.
+        -->
+        <img src="https://placehold.co/600x800/ADEFD1/00203F?text=Flyer+2"
+             alt="Food Depot Weekly Flyer 2"
+             class="flyer-image"
+             onerror="this.onerror=null;this.src='https://placehold.co/600x800/CCCCCC/333333?text=Image+Not+Found';"
+        >
+        <p class="text-gray-600 mt-4">This is the second weekly flyer from Food Depot.</p>
+    </div>
+
+    <footer class="mt-8 text-gray-500 text-sm text-center">
+        &copy; 2025 Weekly Grocery Flyers. All rights reserved.
+    </footer>
+
+</body>
+</html>
