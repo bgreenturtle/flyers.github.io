@@ -7,36 +7,10 @@
     <!-- Tailwind CSS CDN for easy styling and responsiveness -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Custom styles for better font, smooth transitions, and modal backdrop */
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f0f2f5;
         }
-
-        /* Modal backdrop styling */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 100;
-            cursor: pointer;
-        }
-
-        /* Modal image styling for zoom */
-        #modalImage {
-            max-width: 90%;
-            max-height: 90%;
-            cursor: move;
-            transition: transform 0.2s ease-in-out;
-        }
-
-        /* Center container and add a shadow */
         .page-container {
             max-width: 1000px;
             margin: 0 auto;
@@ -47,196 +21,115 @@
             align-items: center;
             justify-content: center;
         }
-
-        /* Store card styling for hyperlinks */
         .store-card {
             transition: all 0.3s ease-in-out;
-            /* Ensure the hyperlink fills the card and is visually interactive */
             display: block;
             text-decoration: none;
             color: inherit;
         }
-
         .store-card:hover {
             transform: translateY(-5px) scale(1.02);
             box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
         }
-        
+        /* Style for displaying the pages */
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: flex;
+        }
     </style>
 </head>
 <body class="selection:bg-indigo-200">
     <!-- Main Application Container -->
     <div id="app" class="page-container">
+        
         <!-- Homepage View -->
-        <div id="homepage" class="w-full flex-grow flex flex-col items-center justify-center transition-opacity duration-500">
+        <div id="homepage" class="page active w-full flex-grow flex-col items-center justify-center transition-opacity duration-500">
             <h1 class="text-5xl font-extrabold text-gray-900 mb-10 text-center leading-tight">Weekly Grocery Flyers</h1>
             <p class="text-lg text-gray-600 mb-12 max-w-2xl text-center">
                 Select a store below to view the latest weekly flyers and deals.
             </p>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl">
                 <!-- Food Depot Hyperlink Card -->
-                <a href="#" data-store="Food Depot" class="store-card p-8 bg-white rounded-xl shadow-lg border border-gray-200 hover:border-indigo-400 focus:outline-none focus:ring-4 focus:ring-indigo-300 transition duration-300">
+                <a href="#food-depot" class="store-card p-8 bg-white rounded-xl shadow-lg border border-gray-200 hover:border-indigo-400 focus:outline-none focus:ring-4 focus:ring-indigo-300 transition duration-300">
                     <h2 class="text-3xl font-bold text-gray-800 mb-2">Food Depot Flyers</h2>
                     <p class="text-gray-500">View weekly specials and savings.</p>
                 </a>
                 <!-- C&C Hyperlink Card -->
-                <a href="#" data-store="C&C" class="store-card p-8 bg-white rounded-xl shadow-lg border border-gray-200 hover:border-indigo-400 focus:outline-none focus:ring-4 focus:ring-indigo-300 transition duration-300">
+                <a href="#cnc" class="store-card p-8 bg-white rounded-xl shadow-lg border border-gray-200 hover:border-indigo-400 focus:outline-none focus:ring-4 focus:ring-indigo-300 transition duration-300">
                     <h2 class="text-3xl font-bold text-gray-800 mb-2">C&C Flyers</h2>
                     <p class="text-gray-500">Explore the latest deals from C&C.</p>
                 </a>
             </div>
         </div>
 
-        <!-- Flyer Display View -->
-        <div id="flyerpage" class="w-full hidden flex-col transition-opacity duration-500">
+        <!-- Food Depot Flyer Page -->
+        <div id="food-depot-page" class="page w-full hidden flex-col transition-opacity duration-500">
             <header class="flex items-center justify-between w-full mb-8">
-                <button id="backButton" class="bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg hover:bg-gray-300 transition duration-300 focus:outline-none focus:ring-2 focus:ring-gray-400">
+                <a href="#" id="foodDepotBackButton" class="bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg hover:bg-gray-300 transition duration-300 focus:outline-none focus:ring-2 focus:ring-gray-400">
                     &larr; Back
-                </button>
-                <h1 id="flyerPageTitle" class="text-3xl font-bold text-gray-800 text-center flex-grow"></h1>
+                </a>
+                <h1 class="text-3xl font-bold text-gray-800 text-center flex-grow">Food Depot Flyers</h1>
             </header>
-            <div id="flyerImageContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
-                <!-- Flyer images will be dynamically inserted here by JavaScript -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 w-full">
+                <!-- Food Depot flyer images -->
+                <img src="FoodDepotFlyer1.jpg" alt="Food Depot Flyer 1" class="w-full rounded-lg shadow-md">
+                <img src="FoodDepotFlyer2.jpg" alt="Food Depot Flyer 2" class="w-full rounded-lg shadow-md">
             </div>
         </div>
+
+        <!-- C&C Flyer Page -->
+        <div id="cnc-page" class="page w-full hidden flex-col transition-opacity duration-500">
+            <header class="flex items-center justify-between w-full mb-8">
+                <a href="#" id="cncBackButton" class="bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg hover:bg-gray-300 transition duration-300 focus:outline-none focus:ring-2 focus:ring-gray-400">
+                    &larr; Back
+                </a>
+                <h1 class="text-3xl font-bold text-gray-800 text-center flex-grow">C&C Flyers</h1>
+            </header>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 w-full">
+                <!-- C&C flyer images -->
+                <img src="CnCFlyer1.jpg" alt="C&C Flyer 1" class="w-full rounded-lg shadow-md">
+                <img src="CnCFlyer2.jpg" alt="C&C Flyer 2" class="w-full rounded-lg shadow-md">
+                <img src="CnCFlyer3.jpg" alt="C&C Flyer 3" class="w-full rounded-lg shadow-md">
+                <img src="CnCFlyer4.jpg" alt="C&C Flyer 4" class="w-full rounded-lg shadow-md">
+            </div>
+        </div>
+
     </div>
 
-    <!-- Image Modal/Overlay -->
-    <div id="modalOverlay" class="modal-overlay hidden">
-        <img id="modalImage" class="transform origin-center" src="" alt="Zoomed Flyer Image">
-        <button id="modalCloseButton" class="absolute top-4 right-4 text-white text-3xl font-bold bg-transparent border-none cursor-pointer p-2 rounded-full hover:bg-gray-800 transition-colors">
-            &times;
-        </button>
-    </div>
-
-    <!-- JavaScript for page and modal functionality -->
+    <!-- JavaScript for page navigation -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- Configuration ---
-            const GCS_BUCKET_NAME = "your-github-pages-flyers"; // IMPORTANT: Replace with your actual bucket name
-            const BASE_GCS_URL = `https://storage.googleapis.com/${GCS_BUCKET_NAME}/`;
-
-            // Data structure for flyers, makes the app easily expandable
-            const flyerData = {
-                "Food Depot": ["FoodDepotFlyer1.jpg", "FoodDepotFlyer2.jpg"],
-                "C&C": ["CnCFlyer1.jpg", "CnCFlyer2.jpg", "CnCFlyer3.jpg", "CnCFlyer4.jpg"]
-            };
-
-            // --- Element References ---
-            const homepage = document.getElementById('homepage');
-            const flyerpage = document.getElementById('flyerpage');
-            const flyerPageTitle = document.getElementById('flyerPageTitle');
-            const flyerImageContainer = document.getElementById('flyerImageContainer');
-            const backButton = document.getElementById('backButton');
-            
-            // This now selects anchor tags instead of buttons
-            const storeLinks = document.querySelectorAll('.store-card');
-            
-            const modalOverlay = document.getElementById('modalOverlay');
-            const modalImage = document.getElementById('modalImage');
-            const modalCloseButton = document.getElementById('modalCloseButton');
-
-            // --- Page Routing Logic ---
-            function renderHomepage() {
-                homepage.classList.remove('hidden');
-                flyerpage.classList.add('hidden');
-            }
-
-            function renderFlyers(storeName) {
-                // Clear any existing images
-                flyerImageContainer.innerHTML = '';
-                
-                // Set the page title
-                flyerPageTitle.textContent = `${storeName} Flyers`;
-                
-                // Build and display flyer images
-                flyerData[storeName].forEach(filename => {
-                    const img = document.createElement('img');
-                    img.src = `${BASE_GCS_URL}${filename}`;
-                    img.alt = `${storeName} Flyer`;
-                    img.className = 'w-full rounded-lg shadow-md cursor-pointer hover:scale-105 transition-transform duration-300';
-                    img.addEventListener('click', () => openModal(img.src));
-                    flyerImageContainer.appendChild(img);
+            // Function to show a specific page and hide others
+            function showPage(pageId) {
+                document.querySelectorAll('.page').forEach(page => {
+                    page.classList.remove('active');
                 });
-
-                // Show the flyer page
-                homepage.classList.add('hidden');
-                flyerpage.classList.remove('hidden', 'flex-col');
-                flyerpage.classList.add('flex', 'flex-col'); // Correctly display flexbox after unhiding
-            }
-
-            // --- Modal/Zoom Logic ---
-            let scale = 1;
-            let isDragging = false;
-            let lastX = 0;
-            let lastY = 0;
-
-            function openModal(imageSrc) {
-                modalImage.src = imageSrc;
-                modalOverlay.classList.remove('hidden');
-                // Reset zoom and position
-                scale = 1;
-                modalImage.style.transform = `scale(${scale}) translate(0px, 0px)`;
-            }
-
-            function closeModal() {
-                modalOverlay.classList.add('hidden');
-            }
-
-            // Zoom functionality with mouse wheel
-            modalOverlay.addEventListener('wheel', (e) => {
-                e.preventDefault();
-                const delta = e.deltaY * -0.01;
-                scale = Math.min(Math.max(1, scale + delta), 4); // Clamp scale between 1 and 4
-                modalImage.style.transform = `scale(${scale})`;
-            });
-
-            // Pan/Drag functionality
-            modalOverlay.addEventListener('mousedown', (e) => {
-                isDragging = true;
-                lastX = e.clientX;
-                lastY = e.clientY;
-            });
-
-            modalOverlay.addEventListener('mouseup', () => {
-                isDragging = false;
-            });
-
-            modalOverlay.addEventListener('mousemove', (e) => {
-                if (!isDragging || scale === 1) return;
-                const dx = e.clientX - lastX;
-                const dy = e.clientY - lastY;
-                lastX = e.clientX;
-                lastY = e.clientY;
-                const transform = modalImage.style.transform;
-                const matches = transform.match(/translate\(([-\d.]+)px, ([-\d.]+)px\)/);
-                let currentX = matches ? parseFloat(matches[1]) : 0;
-                let currentY = matches ? parseFloat(matches[2]) : 0;
-                currentX += dx;
-                currentY += dy;
-                modalImage.style.transform = `scale(${scale}) translate(${currentX}px, ${currentY}px)`;
-            });
-
-            // Close modal by clicking outside the image
-            modalOverlay.addEventListener('click', (e) => {
-                if (e.target === modalOverlay) {
-                    closeModal();
+                const activePage = document.getElementById(pageId);
+                if (activePage) {
+                    activePage.classList.add('active');
+                    activePage.classList.remove('hidden');
+                    activePage.classList.add('flex');
                 }
-            });
+            }
 
-
-            // --- Event Listeners ---
-            // Now listening for clicks on the new anchor tags
-            storeLinks.forEach(link => {
+            // Event listener for the store cards (links)
+            document.querySelectorAll('.store-card').forEach(link => {
                 link.addEventListener('click', (e) => {
-                    e.preventDefault(); // Prevent the default anchor tag behavior
-                    const storeName = e.currentTarget.getAttribute('data-store');
-                    renderFlyers(storeName);
+                    e.preventDefault();
+                    const targetPageId = e.currentTarget.getAttribute('href').substring(1) + '-page';
+                    showPage(targetPageId);
                 });
             });
 
-            backButton.addEventListener('click', renderHomepage);
-            modalCloseButton.addEventListener('click', closeModal);
+            // Event listener for the "Back" buttons
+            document.querySelectorAll('a[id$="BackButton"]').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showPage('homepage');
+                });
+            });
         });
     </script>
 </body>
